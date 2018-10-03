@@ -1,11 +1,11 @@
 import { DynamoDB } from 'aws-sdk';
-import cuid from 'cuid';
+import * as cuid from 'cuid';
 import { TableName } from './constants';
 import AWS from './aws';
 import { random } from './utils';
-import * as chance from 'chance';
+import * as Chance from 'chance';
 
-var chance = new chance();
+var rand = new Chance();
 
 export interface IEmployeeItem {
   pk: string;
@@ -22,15 +22,16 @@ export interface IEmployeeItem {
 }
 
 export async function employees() {
+  console.log('Creating Employees')
   for (let i = 0; i < 10; i++) {
     var item: IEmployeeItem = {
       pk: cuid(),
       sk: 'tenant|employee',
-      gk: chance.name(),
+      gk: rand.name(),
       email: 'string',
       jobId: cuid(),
       orderId: cuid(),
-      orderTotal: chance.integer({ min: 1000, max: 13000 }),
+      orderTotal: rand.integer({ min: 1000, max: 13000 }),
       open: true,
       createdAt: new Date(
         Date.now() - 1000 * 60 * 60 * random(100)
@@ -61,13 +62,13 @@ export async function employees() {
       Item: {
         pk: item.pk,
         sk: 'tenant|employee|confidential',
-        gk: chance.date({ string: true }),
-        salary: chance.integer({ min: 2000, max: 8000 }),
-        commision: chance.integer({ min: 200, max: 800 }),
+        gk: rand.date({ string: true }),
+        salary: rand.integer({ min: 2000, max: 8000 }),
+        commision: rand.integer({ min: 200, max: 800 }),
         __v: 'hireDate'
       }
     });
 
-    console.log(`${i}/${10}`);
+    console.log(`${i}/${9}`);
   }
 }

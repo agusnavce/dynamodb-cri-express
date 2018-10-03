@@ -1,19 +1,19 @@
 import { DynamoDB } from 'aws-sdk';
-import cuid from 'cuid';
+import * as cuid from 'cuid';
 import { TableName } from './constants';
 import AWS from './aws';
 import { random } from './utils';
-import * as chance from 'chance';
+import * as Chance from 'chance';
 
-var chance = new chance();
+var rand = new Chance();
 
 export interface ICustomerItem {
   pk: string;
   sk: string;
   gk: string;
   address: string;
-  incomeLevel: string;
-  creditLimit: string;
+  incomeLevel: number;
+  creditLimit: number;
   phoneNumber: string;
   createdAt: string;
   updatedAt: string;
@@ -21,15 +21,16 @@ export interface ICustomerItem {
 }
 
 export async function customers() {
+  console.log('Creating Customers');
   for (let i = 0; i < 10; i++) {
     var item: ICustomerItem = {
       pk: cuid(),
       sk: 'tenant|customer',
-      gk: chance.name(),
-      address: chance.address(),
-      incomeLevel: chance.integer({ min: 1000, max: 10000 }),
-      creditLimit: chance.integer({ min: 2000, max: 80000 }),
-      phoneNumber: chance.phone(),
+      gk: rand.name(),
+      address: rand.address(),
+      incomeLevel: rand.integer({ min: 1000, max: 10000 }),
+      creditLimit: rand.integer({ min: 2000, max: 80000 }),
+      phoneNumber: rand.phone(),
       createdAt: new Date(
         Date.now() - 1000 * 60 * 60 * random(100)
       ).toISOString(),
@@ -44,6 +45,6 @@ export async function customers() {
 
     await AWS.put(params);
 
-    console.log(`${i}/${10}`);
+    console.log(`${i}/${9}`);
   }
 }

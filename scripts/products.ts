@@ -1,18 +1,18 @@
 import { DynamoDB } from 'aws-sdk';
-import cuid from 'cuid';
+import * as cuid from 'cuid';
 import { TableName } from './constants';
 import AWS from './aws';
 import { random } from './utils';
-import * as chance from 'chance';
+import * as Chance from 'chance';
 
-var chance = new chance();
+var rand = new Chance();
 
 export interface IProductItem {
   pk: string;
   sk: string;
   gk: string;
   description: string;
-  categoryId: string;
+  categoryId: number;
   barcode: string;
   createdAt: string;
   updatedAt: string;
@@ -20,14 +20,15 @@ export interface IProductItem {
 }
 
 export async function products() {
+  console.log('Creating Products');
   for (let i = 0; i < 10; i++) {
     var item: IProductItem = {
       pk: cuid(),
       sk: 'tenant|product',
-      gk: chance.name(),
-      description: chance.sentence({ words: 5 }),
-      categoryId: chance.integer({ min: 0, max: 123 }),
-      barcode: chance.hash({ length: 15 }),
+      gk: rand.name(),
+      description: rand.sentence({ words: 5 }),
+      categoryId: rand.integer({ min: 0, max: 123 }),
+      barcode: rand.hash({ length: 15 }),
       createdAt: new Date(
         Date.now() - 1000 * 60 * 60 * random(100)
       ).toISOString(),
@@ -47,12 +48,12 @@ export async function products() {
       Item: {
         pk: item.pk,
         sk: 'tenant|product|category',
-        gk: item.categoryId,
+        gk: JSON.stringify(item.categoryId),
         __v: 'categoryId',
         __p: JSON.stringify({ barcode: item.barcode })
       }
     });
 
-    console.log(`${i}/${10}`);
+    console.log(`${i}/${9}`);
   }
 }
