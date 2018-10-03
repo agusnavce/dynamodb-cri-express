@@ -33,10 +33,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/customer', customerRouter);
 app.use('/product', productRouter);
 app.use('/order', orderRouter);
 app.use('/employee', employeeRouter);
-app.use('/customer', customerRouter);
 
 // error handler
 app.use(function(err, req, res, next) {

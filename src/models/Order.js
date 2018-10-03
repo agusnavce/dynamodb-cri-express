@@ -6,8 +6,8 @@ const Order = new DynamoDBCRI.Model({
   gsik: 'date',
   indexes: [
     {
-      indexName: 'account',
-      projections: ['accountType', 'employeeName', 'total', 'status']
+      indexName: 'employeeId',
+      projections: ['', 'employeeName', 'total', 'status']
     }
   ],
   trackDates: true

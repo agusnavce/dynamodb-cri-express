@@ -21,7 +21,7 @@
     "listFiles": false,
     "noEmitHelpers": true
   },
-  "include": ["src/**/*"],
+  "include": ["scripts/**/*"],
   "exclude": ["node_modules"],
   "compileOnSave": false
 }
