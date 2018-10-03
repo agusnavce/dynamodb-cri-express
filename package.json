@@ -1,0 +1,25 @@
+{
+  "name": "dynamodb-express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.326.0",
+    "aws-serverless-express": "^3.3.5",
+    "chalk": "^2.4.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "dotenv": "^6.0.0",
+    "dynamodb-cri": "^1.1.18",
+    "express": "^4.16.3",
+    "hbs": "~4.0.1",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
