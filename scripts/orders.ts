@@ -23,7 +23,7 @@ export interface IOrderItem {
 }
 
 export async function orders() {
-  console.log('Creating Orders')
+  console.log('Creating Orders');
   for (let i = 0; i < 10; i++) {
     var item: IOrderItem = {
       pk: cuid(),
@@ -52,7 +52,7 @@ export async function orders() {
       ...params,
       Item: {
         pk: item.pk,
-        sk: 'tenant|order|employee',
+        sk: 'tenant|order|employeeId',
         gk: item.employeeId,
         __v: 'employeeId',
         __p: JSON.stringify({ status: item.status, total: item.total })

@@ -7,7 +7,7 @@ const Order = new DynamoDBCRI.Model({
   indexes: [
     {
       indexName: 'employeeId',
-      projections: ['', 'employeeName', 'total', 'status']
+      projections: ['status', 'total']
     }
   ],
   trackDates: true

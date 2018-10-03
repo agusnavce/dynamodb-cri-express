@@ -4,7 +4,7 @@ const { DynamoDBCRI } = require('dynamodb-cri');
 const Product = new DynamoDBCRI.Model({
   entity: 'products',
   gsik: 'date',
-  indexes: [{ indexName: 'accountId' }],
+  indexes: [{ indexName: 'category', projections: ['barcode'] }],
   trackDates: true
 });
 

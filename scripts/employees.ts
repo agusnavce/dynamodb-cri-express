@@ -22,7 +22,7 @@ export interface IEmployeeItem {
 }
 
 export async function employees() {
-  console.log('Creating Employees')
+  console.log('Creating Employees');
   for (let i = 0; i < 10; i++) {
     var item: IEmployeeItem = {
       pk: cuid(),
@@ -52,8 +52,9 @@ export async function employees() {
       Item: {
         pk: item.pk,
         sk: 'tenant|employee|open',
-        gk: item.orderId,
-        __v: 'orderId'
+        gk: item.open,
+        __p: JSON.stringify({ orderId: item.orderId }),
+        __v: 'open'
       }
     });
 
@@ -61,7 +62,7 @@ export async function employees() {
       ...params,
       Item: {
         pk: item.pk,
-        sk: 'tenant|employee|confidential',
+        sk: 'tenant|employee|conf',
         gk: rand.date({ string: true }),
         salary: rand.integer({ min: 2000, max: 8000 }),
         commision: rand.integer({ min: 200, max: 800 }),

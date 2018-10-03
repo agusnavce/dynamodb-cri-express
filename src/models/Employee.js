@@ -19,7 +19,7 @@ class EmployeeModel extends DynamoDBCRI.Model {
 const Employee = new EmployeeModel({
   entity: 'employee',
   gsik: 'name',
-  indexes: [{ indexName: 'open' }, { indexName: 'confidential' }],
+  indexes: [{ indexName: 'open' }, { indexName: 'conf' }],
   trackDates: true
 });
 
