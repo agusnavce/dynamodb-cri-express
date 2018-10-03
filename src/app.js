@@ -1,15 +1,14 @@
 var express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const app = express();
 const bodyParser = require('body-parser');
 const { documentClient } = require('./utils/aws');
 const { DynamoDBCRI } = require('dynamodb-cri');
 
-var product = require('./routes/employee');
-var employee = require('./routes/order');
-var costumer = require('./routes/order');
-var order = require('./routes/order');
+var productRouter = require('./routes/employee');
+var employeeRouter = require('./routes/employee');
+var customerRouter = require('./routes/customer');
+var orderRouter = require('./routes/order');
 
 var app = express();
 
