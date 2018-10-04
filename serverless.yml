@@ -1,14 +1,31 @@
 service: serverless-dynamodb-cri-app
 
+custom:
+  serviceId: 
+  region:
+  lastestStreamARN: 
+
 provider:
   name: aws
   runtime: nodejs8.10
   stage: dev
   region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeStream
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+        - dynamodb:ListStreams
+        - dynamodb:GetItem 
+        - dynamodb:PutItem 
+      Resource: arn:aws:dynamodb:${self:custom.region}:${self:custom.serviceId}:table/dynamodb-cri
 
 functions:
-  app:
+  api:
     handler: index.handler # reference the file and exported method
+    name: api-${self:provider.stage}
+    description: The lambda function containing the API
     events: # events trigger lambda functions
       - http: # this is an API Gateway HTTP event trigger
           path: /
@@ -21,6 +38,18 @@ functions:
     package:
       include:
         - src/**
+        - node_modules/**
+  hookstreams:
+    handler: lambdaFunction/mantainIndexes.handler
+    name: mantain-${self:provider.stage}
+    description: Function to keep updated the indexes
+    memorySize: 512
+    timeout: 30
+    events:
+      - stream: ${self:custom.lastestStreamARN}
+    package:
+      include:
+        - dist/**
         - node_modules/**
 resources:
   Resources:
@@ -55,3 +84,5 @@ resources:
             ProvisionedThroughput:
               ReadCapacityUnits: '1'
               WriteCapacityUnits: '1'
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
