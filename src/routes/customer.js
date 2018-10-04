@@ -10,7 +10,7 @@ router.get(
   '/',
   wrapErrors(async (req, res) => {
     var data = await Customer.query({});
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 /**
@@ -40,7 +40,7 @@ router.get(
   '/:id',
   wrapErrors(async (req, res) => {
     var data = await Customer.get({ id: req.param.id });
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 /**
@@ -50,7 +50,7 @@ router.put(
   '/:id',
   wrapErrors(async (req, res) => {
     var data = await Customer.update(req.body);
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 

@@ -27,8 +27,8 @@ export async function employees() {
     var item: IEmployeeItem = {
       pk: cuid(),
       sk: 'tenant|employee',
-      gk: rand.name(),
-      email: 'string',
+      gk: JSON.stringify(rand.name()),
+      email: rand.email(),
       jobId: cuid(),
       orderId: cuid(),
       orderTotal: rand.integer({ min: 1000, max: 13000 }),
@@ -63,10 +63,11 @@ export async function employees() {
       Item: {
         pk: item.pk,
         sk: 'tenant|employee|conf',
-        gk: rand.date({ string: true }),
+        gk: JSON.stringify(item.jobId),
+        hireDate: rand.date({ string: true }),
         salary: rand.integer({ min: 2000, max: 8000 }),
         commision: rand.integer({ min: 200, max: 800 }),
-        __v: 'hireDate'
+        __v: 'jobId'
       }
     });
 

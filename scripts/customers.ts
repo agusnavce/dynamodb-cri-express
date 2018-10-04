@@ -26,7 +26,7 @@ export async function customers() {
     var item: ICustomerItem = {
       pk: cuid(),
       sk: 'tenant|customer',
-      gk: rand.name(),
+      gk: JSON.stringify(rand.name()),
       address: rand.address(),
       incomeLevel: rand.integer({ min: 1000, max: 10000 }),
       creditLimit: rand.integer({ min: 2000, max: 80000 }),

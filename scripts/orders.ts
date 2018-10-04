@@ -28,7 +28,7 @@ export async function orders() {
     var item: IOrderItem = {
       pk: cuid(),
       sk: 'tenant|order',
-      gk: rand.date({ string: true }),
+      gk: JSON.stringify(rand.date({ string: true })),
       accountType: rand.word(),
       employeeId: cuid(),
       total: rand.integer({ min: 1000, max: 13000 }),
@@ -53,7 +53,7 @@ export async function orders() {
       Item: {
         pk: item.pk,
         sk: 'tenant|order|employeeId',
-        gk: item.employeeId,
+        gk: JSON.stringify(item.employeeId),
         __v: 'employeeId',
         __p: JSON.stringify({ status: item.status, total: item.total })
       }

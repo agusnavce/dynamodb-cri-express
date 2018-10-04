@@ -10,7 +10,7 @@ router.get(
   '/',
   wrapErrors(async (req, res) => {
     var data = await Product.query({});
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 /**
@@ -39,8 +39,10 @@ router.delete(
 router.get(
   '/:id',
   wrapErrors(async (req, res) => {
-    var data = await Product.get({ id: req.param.id });
-    res.status(200).json({ data: data.item });
+    var id = req.params.id;
+
+    var data = await Product.get({ id });
+    res.status(200).json({ data });
   })
 );
 /**
@@ -50,7 +52,7 @@ router.put(
   '/:id',
   wrapErrors(async (req, res) => {
     var data = await Product.update(req.body);
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 
@@ -67,7 +69,7 @@ router.get(
         expression: '#key = :id'
       }
     });
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 

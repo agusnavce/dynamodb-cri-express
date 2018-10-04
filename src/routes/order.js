@@ -9,7 +9,7 @@ router.get(
   '/',
   wrapErrors(async (req, res) => {
     var data = await Order.query({});
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 /**
@@ -28,7 +28,8 @@ router.post(
 router.delete(
   '/:id',
   wrapErrors(async (req, res) => {
-    var data = await Order.delete({ id: req.params.id });
+    var id = req.params.id;
+    var data = await Order.delete({ id });
     res.status(200).json({ data });
   })
 );
@@ -39,7 +40,7 @@ router.get(
   '/:id',
   wrapErrors(async (req, res) => {
     var data = await Order.get({ id: req.param.id });
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 /**
@@ -49,7 +50,7 @@ router.put(
   '/:id',
   wrapErrors(async (req, res) => {
     var data = await Order.update(req.body);
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 
@@ -66,7 +67,7 @@ router.get(
         expression: '#key = :id'
       }
     });
-    res.status(200).json({ data: data.item });
+    res.status(200).json({ data });
   })
 );
 

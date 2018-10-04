@@ -9,11 +9,11 @@ class EmployeeModel extends DynamoDBCRI.Model {
     var data = await this.query({
       index: 'conf',
       keyCondition: {
-        values: [{ ':id': id }],
-        expression: '#key = :id'
+        values: [{ ':key': id }],
+        expression: '#key = :key'
       }
     });
-    return data;
+    return data.items[0];
   }
   async putConfidential(body) {
     await this.create(body, 'conf');

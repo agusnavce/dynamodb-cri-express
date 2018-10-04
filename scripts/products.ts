@@ -25,7 +25,7 @@ export async function products() {
     var item: IProductItem = {
       pk: cuid(),
       sk: 'tenant|product',
-      gk: rand.name(),
+      gk: JSON.stringify(rand.word()),
       description: rand.sentence({ words: 5 }),
       categoryId: rand.integer({ min: 0, max: 123 }),
       barcode: rand.hash({ length: 15 }),
