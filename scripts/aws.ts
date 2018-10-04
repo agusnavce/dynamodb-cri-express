@@ -14,6 +14,11 @@ class AWS {
   ): Promise<aws.DynamoDB.DocumentClient.PutItemOutput> {
     return DocumentClient.put(input).promise();
   }
+  createTable(
+    input: aws.DynamoDB.CreateTableInput
+  ): Promise<aws.DynamoDB.CreateTableOutput> {
+    return DynamoDB.createTable(input).promise();
+  }
 }
 
 export default new AWS();

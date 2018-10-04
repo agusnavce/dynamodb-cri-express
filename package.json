@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon server.js",
-    "createEntities": "ts-node scripts/cli"
+    "createEntities": "ts-node scripts/cli",
+    "createTable": "ts-node scripts/createTable"
   },
   "dependencies": {
     "aws-sdk": "^2.326.0",
