@@ -478,9 +478,9 @@ duplexer@^0.1.1, duplexer@~0.1.1:
   version "0.1.1"
   resolved "http://registry.npmjs.org/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
-dynamodb-cri@^1.1.18:
-  version "1.1.18"
-  resolved "https://registry.yarnpkg.com/dynamodb-cri/-/dynamodb-cri-1.1.18.tgz#43d5f91f3c84ca30bbc4e7508ef6e1ea80c4a010"
+dynamodb-cri@^1.1.21:
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/dynamodb-cri/-/dynamodb-cri-1.1.21.tgz#efe3cb40150100567f25e462b62bbec0049b9f22"
   dependencies:
     aws-sdk "^2.306.0"
     cuid "^2.1.4"

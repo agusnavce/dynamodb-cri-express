@@ -52,7 +52,7 @@ export async function employees() {
       Item: {
         pk: item.pk,
         sk: 'tenant|employee|open',
-        gk: item.open,
+        gk: JSON.stringify(item.open),
         __p: JSON.stringify({ orderId: item.orderId }),
         __v: 'open'
       }

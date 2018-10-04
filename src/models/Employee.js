@@ -5,8 +5,9 @@ class EmployeeModel extends DynamoDBCRI.Model {
   constructor(config) {
     super(config);
   }
-  async getOrderInfo(id) {
+  async getConfidential(id) {
     var data = await this.query({
+      index: 'conf',
       keyCondition: {
         values: [{ ':id': id }],
         expression: '#key = :id'
@@ -14,12 +15,18 @@ class EmployeeModel extends DynamoDBCRI.Model {
     });
     return data;
   }
+  async putConfidential(body) {
+    await this.create(body, 'conf');
+  }
+  async updateConfidential(body) {
+    await this.update(body, 'conf');
+  }
 }
 
 const Employee = new EmployeeModel({
   entity: 'employee',
   gsik: 'name',
-  indexes: [{ indexName: 'open' }, { indexName: 'conf' }],
+  indexes: [{ indexName: 'open' }],
   trackDates: true
 });
 
