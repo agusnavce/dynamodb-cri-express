@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const { documentClient } = require('./utils/aws');
 const { DynamoDBCRI } = require('dynamodb-cri');
 
-var productRouter = require('./routes/employee');
 var employeeRouter = require('./routes/employee');
 var customerRouter = require('./routes/customer');
 var orderRouter = require('./routes/order');
@@ -34,7 +33,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/customer', customerRouter);
-app.use('/product', productRouter);
 app.use('/order', orderRouter);
 app.use('/employee', employeeRouter);
 
