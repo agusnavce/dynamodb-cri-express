@@ -1,7 +1,6 @@
 const { DynamoDBCRI } = require('dynamodb-cri');
 const Customer = require('../src/models/Customer');
 const Employee = require('../src/models/Employee');
-const Product = require('../src/models/Product');
 const Order = require('../src/models/Order');
 
 /**
@@ -9,8 +8,5 @@ const Order = require('../src/models/Order');
  * stream.
  */
 exports.handler = async event => {
-  await DynamoDBCRI.hookDynamoDBStreams(
-    [Customer, Employee, Product, Order],
-    event
-  );
+  await DynamoDBCRI.hookDynamoDBStreams([Customer, Employee, Order], event);
 };
