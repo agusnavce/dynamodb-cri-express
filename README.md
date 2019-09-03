@@ -2,7 +2,7 @@
 
 You have two options:
 
-Initiate locally or instantiate in aws
+Initiate locally or instantiate in aws.
 
 First install the dependencies
 
@@ -16,7 +16,7 @@ npm install
 
 #### Local
 
-You can use [dynalite](https://github.com/mhart/dynalite)to have the DB locally.
+You can use [dynalite](https://github.com/mhart/dynalite) to have the DB locally.
 
 Create the table:
 
