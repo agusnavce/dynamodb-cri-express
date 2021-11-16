@@ -8,7 +8,7 @@
     "createTable": "ts-node scripts/createTable"
   },
   "dependencies": {
-    "aws-sdk": "^2.326.0",
+    "aws-sdk": "^2.814.0",
     "aws-serverless-express": "^3.3.5",
     "chalk": "^2.4.1",
     "cookie-parser": "~1.4.3",
